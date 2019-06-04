@@ -14,6 +14,9 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_s_login_main.*
 import org.json.JSONArray
 import org.json.JSONObject
+import com.example.wiseathon.QuestClass
+import java.nio.file.Files.list
+
 
 class SLoginMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,9 @@ class SLoginMain : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val url: String = "https://api.github.com/search/users?q=eyehunt"
 
+        val questionList = List(2){QuestClass()}
+        questionList[0].QuestionPhrase = "testphrase1"
+        questionList[1].QuestionPhrase = "testphrase2"
         // Request a string response from the provided URL.
         val stringReq = StringRequest(Request.Method.GET, url,
             Listener<String> { response ->
@@ -39,7 +45,7 @@ class SLoginMain : AppCompatActivity() {
                 var str_user: String = ""
                 for (i in 0 until jsonArray.length()) {
                     var jsonInner: JSONObject = jsonArray.getJSONObject(i)
-                    str_user = str_user + "\n" + jsonInner.get("received_events_url")
+                    str_user = str_user + "\n" + jsonInner.get("received_events_url") + questionList[1].QuestionPhrase
 
                 }
                 testText.text = "response : $str_user "
@@ -47,6 +53,7 @@ class SLoginMain : AppCompatActivity() {
            // Response.ErrorListener { textView!!.text = "That didn't work!" })
             Response.ErrorListener { testText.text = "That didn't work!" })
         queue.add(stringReq)
+
     }
 
 
