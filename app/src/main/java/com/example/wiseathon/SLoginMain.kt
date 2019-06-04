@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_s_login_main.*
 import org.jetbrains.anko.toast
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -14,7 +15,6 @@ import com.android.volley.Response.Listener
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_s_login_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 import com.example.wiseathon.QuestClass
@@ -41,7 +41,11 @@ class SLoginMain : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,strtopicListArray)
         sp.adapter = adapter
         submitTextButton.setOnClickListener {
-            startActivity(Intent(this, TopicSelectionScreen::class.java))
+            //startActivity(Intent(this, TopicSelectionScreen::class.java))
+            val intent = Intent(this@SLoginMain,TopicSelectionScreen::class.java)
+            val selectedTopic = sp.selectedItem.toString()
+            intent.putExtra("Topic", selectedTopic)
+            startActivity(intent)
         }
     }
 
