@@ -42,7 +42,8 @@ class SLoginMain : AppCompatActivity() {
         sp.adapter = adapter
         submitTextButton.setOnClickListener {
             //startActivity(Intent(this, TopicSelectionScreen::class.java))
-            val intent = Intent(this@SLoginMain,TopicSelectionScreen::class.java)
+           // val intent = Intent(this@SLoginMain,TopicSelectionScreen::class.java)
+            val intent = Intent(this@SLoginMain,QuestionSelectionScreen::class.java)
             val selectedTopic = sp.selectedItem.toString()
             intent.putExtra("Topic", selectedTopic)
             startActivity(intent)

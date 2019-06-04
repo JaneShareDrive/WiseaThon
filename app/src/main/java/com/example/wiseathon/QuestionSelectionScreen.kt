@@ -2,6 +2,7 @@ package com.example.wiseathon
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.RadioButton
 import com.example.wiseathon.QuestClass
 import com.android.volley.Request
@@ -11,6 +12,7 @@ import com.android.volley.Response.Listener
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_question_selection_screen.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -22,6 +24,11 @@ class QuestionSelectionScreen : AppCompatActivity() {
         setContentView(R.layout.activity_question_selection_screen)
         var strTopic:String = intent.getStringExtra("Topic")
         val questReturnArray = retrieveQuestionArray()
+
+        questionRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@QuestionSelectionScreen)
+            adapter = QuestionAdapter()
+        }
     }
 
 
