@@ -39,7 +39,7 @@ class SLoginMain : AppCompatActivity() {
                 var str_user: String = ""
                 for (i in 0 until jsonArray.length()) {
                     var jsonInner: JSONObject = jsonArray.getJSONObject(i)
-                    str_user = str_user + "\n" + jsonInner.get("login")
+                    str_user = str_user + "\n" + jsonInner.get("received_events_url")
 
                 }
                 testText.text = "response : $str_user "
