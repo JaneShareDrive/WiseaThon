@@ -23,7 +23,7 @@ class SLoginMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_s_login_main)
         //Start of API Call
-        getUsers()
+        getUsers2()
     }
 
     // function for network call
@@ -59,5 +59,53 @@ class SLoginMain : AppCompatActivity() {
 
     }
 
+
+    fun getUsers2() {
+        // Instantiate the RequestQueue.
+        val queue = Volley.newRequestQueue(this)
+        val url: String = "https://api.github.com/search/users?q=eyehunt"
+
+        /*//Testing array list of objects
+        val questionList = List(2){QuestClass()}
+        questionList[0].QuestionPhrase = "testphrase1"
+        questionList[1].QuestionPhrase = "testphrase2"
+        */
+
+        // Request a string response from the provided URL.
+        val stringReq = StringRequest(Request.Method.GET, url,
+            Listener<String> { response ->
+
+                var strResp = response.toString()
+
+                strResp = """
+    {
+       "type":"Stuff",
+       "Topics":[
+          {
+             "id":1,
+             "title":"Personal Finance"
+          },
+          {
+             "id":2,
+             "title":"Budget"
+          }
+       ]
+    }
+"""
+                val jsonObj: JSONObject = JSONObject(strResp)
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Topics")
+                var str_user: String = ""
+                for (i in 0 until jsonArray.length()) {
+                    var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                    str_user = str_user + "\n" + jsonInner.get("title") /*+ questionList[1].QuestionPhrase*/
+
+                }
+                testText.text = "response : $str_user "
+            },
+            // Response.ErrorListener { textView!!.text = "That didn't work!" })
+            Response.ErrorListener { testText.text = "That didn't work!" })
+        queue.add(stringReq)
+
+    }
 
 }
