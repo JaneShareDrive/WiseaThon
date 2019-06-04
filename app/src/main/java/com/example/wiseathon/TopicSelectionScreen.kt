@@ -28,19 +28,24 @@ class TopicSelectionScreen : AppCompatActivity() {
         var strTopic:String = intent.getStringExtra("Topic")
         textView2.text = "Your " + strTopic + " Question:" + "\n" + questReturnArray[0].QuestionPhrase
 
-        val radioButtonTemp = RadioButton(this)
-        radioButtonTemp.text = questReturnArray[0].QuestionAns1.toString()
-        radioGroup2.addView(radioButtonTemp)
-        radioGroup2.check(radioButtonTemp.id)
-        val radioButtonTemp2 = RadioButton(this)
-        radioButtonTemp2.text = questReturnArray[0].QuestionAns2.toString()
-        radioGroup2.addView(radioButtonTemp2)
-        val radioButtonTemp3 = RadioButton(this)
-        radioButtonTemp3.text = questReturnArray[0].QuestionAns3.toString()
-        radioGroup2.addView(radioButtonTemp3)
-        val radioButtonTemp4 = RadioButton(this)
-        radioButtonTemp4.text = questReturnArray[0].QuestionAns4.toString()
-        radioGroup2.addView(radioButtonTemp4)
+        for (i in 0 until questReturnArray.count())  //Converts Question object
+        {
+            val radioButtonTemp = RadioButton(this)
+            radioButtonTemp.text = questReturnArray[i].QuestionAns1.toString()
+            radioGroup2.addView(radioButtonTemp)
+            radioGroup2.check(radioButtonTemp.id)
+            val radioButtonTemp2 = RadioButton(this)
+            radioButtonTemp2.text = questReturnArray[i].QuestionAns2.toString()
+            radioGroup2.addView(radioButtonTemp2)
+            val radioButtonTemp3 = RadioButton(this)
+            radioButtonTemp3.text = questReturnArray[i].QuestionAns3.toString()
+            radioGroup2.addView(radioButtonTemp3)
+            val radioButtonTemp4 = RadioButton(this)
+            radioButtonTemp4.text = questReturnArray[i].QuestionAns4.toString()
+            radioGroup2.addView(radioButtonTemp4)
+        }
+
+
 
     }
 
