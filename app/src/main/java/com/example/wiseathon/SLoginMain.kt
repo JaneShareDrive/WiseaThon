@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_s_login_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 import com.example.wiseathon.QuestClass
+import com.example.wiseathon.TopicClass
 import java.nio.file.Files.list
 
 
@@ -23,7 +24,7 @@ class SLoginMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_s_login_main)
         //Start of API Call
-        getUsers2()
+        jsonParsetoObject()
     }
 
     // function for network call
@@ -60,34 +61,31 @@ class SLoginMain : AppCompatActivity() {
     }
 
 
-    fun getUsers2() {
-        // Instantiate the RequestQueue.
-        val queue = Volley.newRequestQueue(this)
-        val url: String = "https://api.github.com/search/users?q=eyehunt"
-
-        /*//Testing array list of objects
-        val questionList = List(2){QuestClass()}
-        questionList[0].QuestionPhrase = "testphrase1"
-        questionList[1].QuestionPhrase = "testphrase2"
-        */
-
-        // Request a string response from the provided URL.
-        val stringReq = StringRequest(Request.Method.GET, url,
-            Listener<String> { response ->
-
-                var strResp = response.toString()
-
-                strResp = """
+    fun jsonParseExample() {
+        // Example for JSON Parsing
+        var strResp = """
     {
        "type":"Stuff",
        "Topics":[
           {
              "id":1,
-             "title":"Personal Finance"
+             "title":"Banking"
           },
           {
              "id":2,
-             "title":"Budget"
+             "title":"Credit"
+          },
+          {
+             "id":3,
+             "title":"Personal Finance"
+          },
+          {
+             "id":4,
+             "title":"Money/Financial Planning"
+          },
+          {
+             "id":5,
+             "title":"Investments"
           }
        ]
     }
@@ -101,11 +99,54 @@ class SLoginMain : AppCompatActivity() {
 
                 }
                 testText.text = "response : $str_user "
-            },
-            // Response.ErrorListener { textView!!.text = "That didn't work!" })
-            Response.ErrorListener { testText.text = "That didn't work!" })
-        queue.add(stringReq)
-
     }
+
+    fun jsonParsetoObject() {
+        // Example for JSON Parsing to Object
+//Testing array list of objects
+
+
+var strResp = """
+{
+"type":"Stuff",
+"Topics":[
+{
+"id":1,
+"title":"Banking"
+},
+{
+"id":2,
+"title":"Credit"
+},
+{
+"id":3,
+"title":"Personal Finance"
+},
+{
+"id":4,
+"title":"Money/Financial Planning"
+},
+{
+"id":5,
+"title":"Investments"
+}
+]
+}
+"""
+val jsonObj: JSONObject = JSONObject(strResp)
+val jsonArray: JSONArray = jsonObj.getJSONArray("Topics")
+var str_user: String = ""
+        //Create Object List of topicClass
+        val topicList = List(jsonArray.length()){TopicClass()}
+        //Fill in content from JSON Array
+for (i in 0 until jsonArray.length()) {
+var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+    topicList[i].topicID = jsonInner.get("id").toString().toInt()
+    topicList[i].topicName = jsonInner.get("title").toString()
+str_user = str_user + "\n" + topicList[i].topicID + "  " + topicList[i].topicName  /*+ questionList[1].QuestionPhrase*/
+
+}
+testText.text = "response : $str_user "
+}
 
 }
