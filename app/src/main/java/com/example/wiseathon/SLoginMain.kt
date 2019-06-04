@@ -32,9 +32,11 @@ class SLoginMain : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         val url: String = "https://api.github.com/search/users?q=eyehunt"
 
+        //Testing array list of objects
         val questionList = List(2){QuestClass()}
         questionList[0].QuestionPhrase = "testphrase1"
         questionList[1].QuestionPhrase = "testphrase2"
+
         // Request a string response from the provided URL.
         val stringReq = StringRequest(Request.Method.GET, url,
             Listener<String> { response ->
