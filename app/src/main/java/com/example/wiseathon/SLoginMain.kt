@@ -1,5 +1,6 @@
 package com.example.wiseathon
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -25,7 +26,13 @@ class SLoginMain : AppCompatActivity() {
         setContentView(R.layout.activity_s_login_main)
         //Start of API Call
         jsonParsetoObject()
+
+        submitTextButton.setOnClickListener {
+            startActivity(Intent(this, TopicSelectionScreen::class.java))
+        }
     }
+
+
 
     // function for network call
     fun getUsers() {
@@ -148,5 +155,7 @@ str_user = str_user + "\n" + topicList[i].topicID + "  " + topicList[i].topicNam
 }
 testText.text = "response : $str_user "
 }
+
+
 
 }
