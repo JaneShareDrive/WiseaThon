@@ -13,9 +13,9 @@ class QuestionSelectionScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_selection_screen)
-        var strTopic:String = intent.getStringExtra("Topic")
+        var topicClassReturn = intent.getSerializableExtra("TopicClass") as? TopicClass
         val questReturnArray = retrieveQuestionArray()
-
+        button.text = topicClassReturn?.topicName.toString() + topicClassReturn?.topicID.toString()
         questionRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@QuestionSelectionScreen)
             adapter = QuestionAdapter(questReturnArray)
@@ -37,31 +37,31 @@ class QuestionSelectionScreen : AppCompatActivity() {
 "Answer4":"Always"
 },
 {
-"id":1,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
-},
-{
-"id":1,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
-},
-{
-"id":1,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
-},
-{
 "id":2,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
+"id":3,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
+"id":4,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
+"id":5,
 "Question":"When a money market fund falls below $1 per share, it is called",
 "Answer1":"Breaking the bank",
 "Answer2":"Breaking the buck",

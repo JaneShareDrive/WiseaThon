@@ -39,13 +39,14 @@ class SLoginMain : AppCompatActivity() {
         }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,strtopicListArray)
+
         sp.adapter = adapter
         submitTextButton.setOnClickListener {
             //startActivity(Intent(this, TopicSelectionScreen::class.java))
            // val intent = Intent(this@SLoginMain,TopicSelectionScreen::class.java)
             val intent = Intent(this@SLoginMain,QuestionSelectionScreen::class.java)
-            val selectedTopic = sp.selectedItem.toString()
-            intent.putExtra("Topic", selectedTopic)
+            val selectedTopicClass = topicListsObject[sp.selectedItemPosition]
+            intent.putExtra("TopicClass",selectedTopicClass)
             startActivity(intent)
         }
     }
