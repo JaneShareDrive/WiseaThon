@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import kotlinx.android.synthetic.main.row_question.view.*
 
 class QuestionAdapter(private val questReturnArray: List<QuestClass>) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
@@ -22,10 +23,18 @@ class QuestionAdapter(private val questReturnArray: List<QuestClass>) : Recycler
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textQuestPhrase.text = questReturnArray[position].QuestionPhrase
+        holder.radQuestAns1.text = questReturnArray[position].QuestionAns1
+        holder.radQuestAns2.text = questReturnArray[position].QuestionAns2
+        holder.radQuestAns3.text = questReturnArray[position].QuestionAns3
+        holder.radQuestAns4.text = questReturnArray[position].QuestionAns4
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val textQuestPhrase = view.textQuestPhrase!!
+        val radQuestAns1 = view.radioButton2!!
+        val radQuestAns2 = view.radioButton3!!
+        val radQuestAns3 = view.radioButton4!!
+        val radQuestAns4 = view.radioButton5!!
 
     }
 

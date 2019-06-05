@@ -37,6 +37,30 @@ class QuestionSelectionScreen : AppCompatActivity() {
 "Answer4":"Always"
 },
 {
+"id":1,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
+"id":1,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
+"id":1,
+"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
+"Answer1":"When you think you will have more taxable income in the future than the present.",
+"Answer2":"When you think you will have more taxable income in the present than the future.",
+"Answer3":"Never",
+"Answer4":"Always"
+},
+{
 "id":2,
 "Question":"When a money market fund falls below $1 per share, it is called",
 "Answer1":"Breaking the bank",
