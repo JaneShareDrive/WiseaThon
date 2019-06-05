@@ -6,6 +6,14 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_question_selection_screen.*
 import org.json.JSONArray
 import org.json.JSONObject
+import org.jetbrains.anko.toast
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.Response.Listener
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 
 
 class QuestionSelectionScreen : AppCompatActivity() {
@@ -13,7 +21,7 @@ class QuestionSelectionScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question_selection_screen)
-        var topicClassReturn = intent.getSerializableExtra("TopicClass") as? TopicClass
+        var topicClassReturn = intent.getSerializableExtra("TopicClass") as? TopicClass  //retrieves object from previous activity
         val questReturnArray = retrieveQuestionArray()
         button.text = topicClassReturn?.topicName.toString() + topicClassReturn?.topicID.toString()
         questionRecyclerView.apply {
@@ -22,6 +30,29 @@ class QuestionSelectionScreen : AppCompatActivity() {
         }
     }
 
+    fun sendTopicList(topicListReturned:TopicClass){
+        //Sends a JSON Post that includes topic selected.  If this doesn't work, then send TopicID via URL
+        val jsonObject = JSONObject()
+        jsonObject.put("topicID",topicListReturned.topicID.toString())
+
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://postman-echo.com/post"
+        var txtResponse:String
+        val request = JsonObjectRequest(Request.Method.POST,url,jsonObject,
+            Response.Listener { response ->
+                // Process the json
+                try {
+                    txtResponse = "Response: $response"
+                }catch (e:Exception){
+                    txtResponse = "Exception: $e"
+                }
+
+            }, Response.ErrorListener{
+                // Error in request
+                txtResponse = "Volley error: $it"
+            })
+        queue.add(request)
+    }
 
     fun retrieveQuestionArray():List<QuestClass> {
         var strResp = """

@@ -1,6 +1,9 @@
 package com.example.wiseathon
+
+import java.io.Serializable
+
 //Class for Questions
-class QuestClass {
+class QuestClass : Serializable {
      var QuestionID: Int = 0
      var QuestionPhrase: String = ""
 
