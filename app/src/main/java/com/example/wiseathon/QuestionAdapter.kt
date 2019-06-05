@@ -31,10 +31,10 @@ class QuestionAdapter(private val questReturnArray: List<QuestClass>) : Recycler
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val textQuestPhrase = view.textQuestPhrase!!
-        val radQuestAns1 = view.radioButton2!!
-        val radQuestAns2 = view.radioButton3!!
-        val radQuestAns3 = view.radioButton4!!
-        val radQuestAns4 = view.radioButton5!!
+        val radQuestAns1 = view.radioButAns1!!
+        val radQuestAns2 = view.radioButAns2!!
+        val radQuestAns3 = view.radioButAns3!!
+        val radQuestAns4 = view.radioButAns4!!
 
     }
 
