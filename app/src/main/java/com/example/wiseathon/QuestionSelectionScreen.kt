@@ -1,5 +1,6 @@
 package com.example.wiseathon
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -27,7 +28,12 @@ class QuestionSelectionScreen : AppCompatActivity() {
         textTopic.text = topicClassReturn?.topicName.toString() + " Test Questions"
         questionRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@QuestionSelectionScreen)
-            adapter = QuestionAdapter(questReturnArray)
+            adapter = AnswerAdapter(questReturnArray)
+        }
+
+        buttonSubmit.setOnClickListener {
+            val intent = Intent(this@QuestionSelectionScreen,AnswerActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -62,27 +68,27 @@ class QuestionSelectionScreen : AppCompatActivity() {
 "Questions":[
 {
 "id":1,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
+"Question":"Jacob lost his debit card. If Jacob reports his lost or stolen debit card within two business days, he can be held responsible for",
+"Answer1":"Up to $500 unauthorized transactions.",
+"Answer2":"Up to $50 unauthorized transactions.",
+"Answer3":"All unauthorized transactions without a limit.",
+"Answer4":"No Purchases"
 },
 {
 "id":2,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
+"Question":"When a check is made payable to cash, it:",
+"Answer1":"voids the check.",
+"Answer2":"creates a check that anyone can cash.",
+"Answer3":"does not allow the check to be deposited.",
+"Answer4":"restricts the life of the check to no more than 5 days."
 },
 {
 "id":3,
-"Question":"When would you pick invest in a Roth IRA over a Traditional IRA",
-"Answer1":"When you think you will have more taxable income in the future than the present.",
-"Answer2":"When you think you will have more taxable income in the present than the future.",
-"Answer3":"Never",
-"Answer4":"Always"
+"Question":"Which of the following is a nonprofit financial institution?",
+"Answer1":"Credit union.",
+"Answer2":"Savings and loan bank.",
+"Answer3":"Commercial bank.",
+"Answer4":"Real estate agency."
 },
 {
 "id":4,
