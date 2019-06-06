@@ -23,7 +23,8 @@ class QuestionSelectionScreen : AppCompatActivity() {
         setContentView(R.layout.activity_question_selection_screen)
         var topicClassReturn = intent.getSerializableExtra("TopicClass") as? TopicClass  //retrieves object from previous activity
         val questReturnArray = retrieveQuestionArray()
-        button.text = topicClassReturn?.topicName.toString() + topicClassReturn?.topicID.toString()
+        //button.text = topicClassReturn?.topicName.toString() + topicClassReturn?.topicID.toString()
+        textTopic.text = topicClassReturn?.topicName.toString() + " Test Questions"
         questionRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@QuestionSelectionScreen)
             adapter = QuestionAdapter(questReturnArray)
