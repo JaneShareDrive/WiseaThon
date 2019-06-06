@@ -9,13 +9,12 @@
         tools:context=".MainActivity">
 
     <Button
-            android:text="Log In"
+            android:text="@string/log_in"
             android:layout_width="132dp"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="167dp" android:id="@+id/loginSubmit"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
-            android:layout_alignParentStart="true" android:layout_marginLeft="142dp" android:layout_marginStart="142dp"
-            android:layout_alignParentLeft="true" android:layout_marginTop="469dp"
+            android:layout_alignParentStart="true" android:layout_marginLeft="143dp" android:layout_marginStart="143dp"
+            android:layout_alignParentLeft="true" android:layout_marginTop="550dp"
             android:layout_alignParentTop="true" android:textColor="#FFFFFF"
             android:background="@color/design_default_color_primary_dark"/>
     <ImageView
@@ -35,7 +34,7 @@
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            android:id="@+id/editText4" android:layout_alignParentStart="true" android:layout_marginLeft="89dp"
+            android:id="@+id/textUser" android:layout_alignParentStart="true" android:layout_marginLeft="89dp"
             android:layout_marginStart="89dp" android:layout_alignParentLeft="true" android:layout_marginTop="286dp"
             android:layout_alignParentTop="true"/>
     <EditText
@@ -43,8 +42,24 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText5" android:layout_alignParentStart="true" android:layout_marginLeft="84dp"
+            android:id="@+id/textPassword" android:layout_alignParentStart="true" android:layout_marginLeft="84dp"
             android:layout_marginStart="84dp" android:layout_alignParentLeft="true" android:layout_marginTop="363dp"
             android:layout_alignParentTop="true"/>
+    <RadioGroup
+            android:layout_width="377dp"
+            android:layout_height="45dp" android:layout_alignParentStart="true" android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp" android:layout_alignParentLeft="true" android:layout_marginTop="430dp"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true" android:id="@+id/radioSelector">
+        <RadioButton
+                android:text="Teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/radioTeacher" android:layout_weight="1"/>
+        <RadioButton
+                android:text="Student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/radioStudent" android:layout_weight="1"
+                android:layout_alignTop="@+id/radioSelector" android:layout_alignEnd="@+id/radioSelector"/>
+    </RadioGroup>
 
 </RelativeLayout>

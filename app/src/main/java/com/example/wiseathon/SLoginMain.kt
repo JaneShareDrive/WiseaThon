@@ -28,7 +28,8 @@ class SLoginMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_s_login_main)
-
+        textName.text = "Tim"//intent.getStringExtra("User")
+      textRole.text = "Student" //intent.getStringExtra("Role")
         // create spinner and populate with information from API
         sp = findViewById(R.id.dropDrownTopics) as Spinner
         val topicListsObject = retrieveTopicList()  //Call API and retrieve topic List and return list of topic Object
@@ -123,10 +124,10 @@ class SLoginMain : AppCompatActivity() {
                     str_user = str_user + "\n" + jsonInner.get("received_events_url") /*+ questionList[1].QuestionPhrase*/
 
                 }
-                testText.text = "response : $str_user "
+               // testText.text = "response : $str_user "
             },
             // Response.ErrorListener { textView!!.text = "That didn't work!" })
-            Response.ErrorListener { testText.text = "That didn't work!" })
+            Response.ErrorListener {var txtResponse = "That didn't work!" })
         queue.add(stringReq)
 
     }
@@ -167,7 +168,7 @@ class SLoginMain : AppCompatActivity() {
             str_user = str_user + "\n" + jsonInner.get("title") /*+ questionList[1].QuestionPhrase*/
 
         }
-        testText.text = "response : $str_user "
+        var txtResponse2 = "response : $str_user "
     }
     fun jsonParsetoObject() {
         // Example for JSON Parsing to Object
@@ -214,7 +215,7 @@ class SLoginMain : AppCompatActivity() {
             str_user = str_user + "\n" + topicList[i].topicID + "  " + topicList[i].topicName  /*+ questionList[1].QuestionPhrase*/
 
         }
-        testText.text = "response : $str_user "
+        var txtResponse3 = "response : $str_user "
     }
 
 
