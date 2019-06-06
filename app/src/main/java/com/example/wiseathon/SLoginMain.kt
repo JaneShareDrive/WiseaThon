@@ -28,11 +28,11 @@ class SLoginMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_s_login_main)
-        textName.text = "Tim"//intent.getStringExtra("User")
-      textRole.text = "Student" //intent.getStringExtra("Role")
+        textName.text = intent.getStringExtra("User")
+      textRole.text = intent.getStringExtra("Role")
         // create spinner and populate with information from API
         sp = findViewById(R.id.dropDrownTopics) as Spinner
-        val topicListsObject = retrieveTopicList()  //Call API and retrieve topic List and return list of topic Object
+        val topicListsObject = retrieveTopicList2()  //Call API and retrieve topic List and return list of topic Object
         val strtopicListArray: ArrayList<String> = ArrayList()
         for (i in 0 until topicListsObject.count())  //Converts topic object to string list for spinner selection
         {
@@ -50,12 +50,17 @@ class SLoginMain : AppCompatActivity() {
             intent.putExtra("TopicClass",selectedTopicClass)
             startActivity(intent)
         }
+        button3.setOnClickListener {
+            getUsers()
+        }
     }
 
 
     // function for network call
     fun retrieveTopicList(): List<TopicClass> {
-        //replace
+        // Instantiate the RequestQueue.
+        val queue = Volley.newRequestQueue(this)
+        val url: String = "https://gettopics.azurewebsites.net/api/Function1"
         var strResp = """
 {
 "type":"Stuff",
@@ -99,8 +104,84 @@ class SLoginMain : AppCompatActivity() {
     }
 
 
+
+    fun retrieveTopicList2(): List<TopicClass> {
+        //replace
+        var strResp = """
+{
+"type":"Stuff",
+"Topics":[
+{
+"id":1,
+"title":"Banking"
+},
+{
+"id":2,
+"title":"Credit"
+},
+{
+"id":3,
+"title":"Personal Finance"
+},
+{
+"id":4,
+"title":"Money/Financial Planning"
+},
+{
+"id":5,
+"title":"Investments"
+}
+]
+}
+"""   //replace strResponse with API Call to get actual list
+        val jsonObj: JSONObject = JSONObject(strResp)
+        val jsonArray: JSONArray = jsonObj.getJSONArray("Topics")
+        var str_user: String = ""
+        //Create Object List of topicClass
+        val topicList = List(jsonArray.length()){TopicClass()}
+        //Fill in content from JSON Array
+        for (i in 0 until jsonArray.length()) {
+            var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+            topicList[i].topicID = jsonInner.get("id").toString().toInt()
+            topicList[i].topicName = jsonInner.get("title").toString()
+        }
+        return topicList
+
+    }
+
     //Example functions for use
     fun getUsers() {
+        // Instantiate the RequestQueue.
+        val queue = Volley.newRequestQueue(this)
+        val url: String = "https://gettopics.azurewebsites.net/api/Function1"
+
+        /*//Testing array list of objects
+        val questionList = List(2){QuestClass()}
+        questionList[0].QuestionPhrase = "testphrase1"
+        questionList[1].QuestionPhrase = "testphrase2"
+        */
+
+        // Request a string response from the provided URL.
+        val stringReq = StringRequest(Request.Method.GET, url,
+            Listener<String> { response ->
+
+                var strResp = response.toString()
+                val jsonObj: JSONObject = JSONObject(strResp)
+                val jsonArray: JSONArray = jsonObj.getJSONArray("topicID")
+                var str_user: String = ""
+                for (i in 0 until jsonArray.length()) {
+                    var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                    str_user = str_user + "\n" + jsonInner.get("topicName") /*+ questionList[1].QuestionPhrase*/
+
+                }
+                textView5.text = "response : $str_user "
+            },
+            // Response.ErrorListener { textView!!.text = "That didn't work!" })
+            Response.ErrorListener {var txtResponse = "That didn't work!" })
+        queue.add(stringReq)
+
+    }
+    fun getUsers2() {
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(this)
         val url: String = "https://api.github.com/search/users?q=eyehunt"
@@ -124,7 +205,7 @@ class SLoginMain : AppCompatActivity() {
                     str_user = str_user + "\n" + jsonInner.get("received_events_url") /*+ questionList[1].QuestionPhrase*/
 
                 }
-               // testText.text = "response : $str_user "
+                textView5.text = "response : $str_user "
             },
             // Response.ErrorListener { textView!!.text = "That didn't work!" })
             Response.ErrorListener {var txtResponse = "That didn't work!" })

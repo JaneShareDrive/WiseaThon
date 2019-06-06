@@ -21,8 +21,8 @@
             android:layout_height="35dp"
             android:id="@+id/dropDrownTopics" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_alignParentStart="true" android:layout_marginLeft="89dp"
-            android:layout_marginStart="89dp" android:layout_alignParentLeft="true" android:layout_marginTop="250dp"
+            android:layout_alignParentStart="true" android:layout_marginLeft="115dp"
+            android:layout_marginStart="115dp" android:layout_alignParentLeft="true" android:layout_marginTop="191dp"
             android:layout_alignParentTop="true"/>
     <ImageButton
             android:layout_width="35dp"
@@ -52,6 +52,18 @@
             android:layout_alignParentTop="true" android:layout_marginLeft="21dp"
             android:layout_marginStart="21dp" android:textColor="#FFFFFF"
             android:textSize="18sp" android:layout_alignParentStart="true" android:layout_alignParentLeft="true"/>
+    <TextView
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView5" android:layout_alignParentStart="true"
+            android:layout_marginLeft="42dp" android:layout_marginStart="42dp" android:layout_alignParentLeft="true"
+            android:layout_marginTop="317dp" android:layout_alignParentTop="true"/>
+    <Button
+            android:text="Test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button3" android:layout_alignParentStart="true"
+            android:layout_marginLeft="183dp" android:layout_marginStart="183dp" android:layout_alignParentLeft="true"
+            android:layout_marginTop="289dp" android:layout_alignParentTop="true"/>
 
 
 </RelativeLayout>

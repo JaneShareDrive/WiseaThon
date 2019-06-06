@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
             var radio : RadioButton
             radio = findViewById(radioSelector.checkedRadioButtonId)
            txtRoleSelect = radio.text.toString()
-            intent.putExtra("User", "Tim")//txtUser)
-            intent.putExtra("Role", "Student")//txtRoleSelect)
-            startActivity(Intent(this, SLoginMain::class.java))
+            intent.putExtra("User",txtUser)
+            intent.putExtra("Role", txtRoleSelect)
+            startActivity(intent)
         }
     }
 }
